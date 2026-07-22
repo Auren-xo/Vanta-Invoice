@@ -1,0 +1,174 @@
+[hidden] {
+    display: none !important;
+}
+
+.profile {
+    border: 0;
+    background: transparent;
+    color: #e8e8ea;
+    width: 100%;
+    font-family: Manrope;
+    text-align: left;
+    cursor: pointer
+}
+
+.utility-view {
+    margin-top: 28px;
+    background: #fff;
+    border: 1px solid #e9e7e4;
+    border-radius: 9px;
+    padding: 30px
+}
+
+.utility-view h2 {
+    font-size: 21px;
+    letter-spacing: -.7px;
+    margin: 0 0 8px
+}
+
+.utility-view p {
+    color: #817e87;
+    max-width: 560px;
+    line-height: 1.7
+}
+
+.utility-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 22px
+}
+
+.utility-cards div {
+    border: 1px solid #ece9ed;
+    border-radius: 7px;
+    padding: 17px
+}
+
+.utility-cards strong {
+    display: block;
+    font-size: 17px;
+    margin-bottom: 4px
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: #17161a80;
+    z-index: 20;
+    display: grid;
+    place-items: center;
+    padding: 20px
+}
+
+.modal-card {
+    position: relative;
+    width: min(430px, 100%);
+    background: #fff;
+    border-radius: 10px;
+    padding: 29px;
+    box-shadow: 0 25px 70px #0004
+}
+
+.modal-card h2 {
+    margin: 0 0 12px;
+    font-size: 21px
+}
+
+.modal-card p:not(.eyebrow) {
+    line-height: 1.7;
+    color: #68656e;
+    font-size: 12px;
+    margin-bottom: 21px
+}
+
+.modal-close {
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    border: 0;
+    background: transparent;
+    font-size: 24px;
+    color: #777;
+    cursor: pointer
+}
+
+.search-panel {
+    position: fixed;
+    z-index: 15;
+    right: 36px;
+    top: 69px;
+    width: 310px;
+    padding: 16px;
+    background: #fff;
+    border: 1px solid #e5e2e6;
+    border-radius: 8px;
+    box-shadow: 0 14px 30px #0002
+}
+
+.search-panel label {
+    display: block
+}
+
+.search-panel input {
+    margin-bottom: 11px
+}
+
+.search-panel button,
+.profile-menu button {
+    border: 0;
+    background: transparent;
+    font: 700 11px Manrope;
+    color: #6553ed;
+    cursor: pointer;
+    padding: 0
+}
+
+.profile-menu {
+    position: fixed;
+    z-index: 15;
+    right: 23px;
+    top: 66px;
+    width: 192px;
+    background: #fff;
+    border: 1px solid #e5e2e6;
+    border-radius: 8px;
+    box-shadow: 0 14px 30px #0002;
+    padding: 14px;
+    display: grid;
+    gap: 8px
+}
+
+.profile-menu strong {
+    font-size: 12px
+}
+
+.profile-menu small {
+    font-size: 10px;
+    color: #918e97;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee
+}
+
+.profile-menu button {
+    text-align: left;
+    color: #4b4951;
+    padding: 5px 0
+}
+
+.profile-menu button:last-child {
+    color: #c44747
+}
+
+@media(max-width:620px) {
+    .utility-cards {
+        grid-template-columns: 1fr
+    }
+
+    .search-panel {
+        left: 14px;
+        right: 14px;
+        width: auto;
+        top: 60px
+    }
+}

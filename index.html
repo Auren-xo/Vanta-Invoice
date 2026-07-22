@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanta Invoice — Invoice management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="data.css" />
+    <link rel="stylesheet" href="interactions.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#"><span class="brand-mark">V</span><span>vanta<span class="muted-dot">.</span></span></a>
+        <nav class="nav">
+          <a class="nav-item active" data-view="overview" href="#overview"><span>⊞</span> Overview</a>
+          <a class="nav-item" data-view="invoices" href="#invoices"><span>▤</span> Invoices <b id="sideInvoiceCount">0</b></a>
+          <a class="nav-item" data-view="clients" href="#clients"><span>♙</span> Clients</a>
+          <a class="nav-item" data-view="products" href="#products"><span>◫</span> Products</a>
+          <a class="nav-item" data-view="reports" href="#reports"><span>◷</span> Reports</a>
+        </nav>
+        <div class="sidebar-bottom">
+          <a class="nav-item" data-view="settings" href="#settings"><span>⚙</span> Settings</a>
+          <div class="upgrade-card">
+            <span class="sparkle">✦</span>
+            <strong>Unlock more</strong>
+            <p>Get custom branding and unlimited invoices.</p>
+            <button>Explore Pro <span>→</span></button>
+          </div>
+          <button class="profile" id="profileButton"><div class="avatar avatar-small">AM</div><div><strong>Alex Morgan</strong><small>Studio Noma</small></div><span class="more">···</span></button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="crumb">Invoices <span>/</span> <strong>Create invoice</strong></div>
+          <div class="top-actions"><button class="icon-button" id="searchButton" aria-label="Search invoices">⌕</button><button class="help-button" id="helpButton" aria-label="Help">?</button><button class="avatar" id="topProfileButton">AM</button></div>
+        </header>
+        <section class="workspace">
+          <div class="page-heading">
+            <div><p class="eyebrow">NEW INVOICE</p><h1>Create invoice</h1></div>
+            <div class="heading-actions"><button class="draft-button" id="saveDraft">Save draft</button><button class="primary-button" id="sendInvoice">Send invoice <span>→</span></button></div>
+          </div>
+
+          <div class="content-grid" id="invoiceWorkspace">
+            <section class="invoice-card">
+              <div class="invoice-top">
+                <div class="invoice-logo">N<span>.</span></div>
+                <div class="invoice-title"><small>INVOICE</small><strong>#INV-2024-018</strong></div>
+              </div>
+              <div class="form-row two">
+                <label>Client name<input id="clientName" value="Lucia Leon" required /></label>
+                <label>Issue date<input type="date" value="2024-10-24" /></label>
+              </div>
+              <div class="form-row two compact-row">
+                <label>Client email<input id="clientEmail" type="email" value="lucia@studioleo.com" required /></label>
+                <label>Due date<input type="date" value="2024-11-07" /></label>
+              </div>
+              <div class="line-title"><span>ITEMS</span><button id="addItem">+ Add item</button></div>
+              <div class="items-table">
+                <div class="table-head"><span>Item</span><span>Qty</span><span>Rate</span><span>Amount</span><span></span></div>
+                <div id="lineItems">
+                  <div class="line-item"><input class="description" value="Brand identity design"/><input class="qty" type="number" min="1" value="1"/><div class="rate-wrap"><span>$</span><input class="rate" type="number" value="2400"/></div><strong class="amount">$2,400.00</strong><button class="remove" aria-label="Remove item">×</button></div>
+                  <div class="line-item"><input class="description" value="Website design — 5 pages"/><input class="qty" type="number" min="1" value="1"/><div class="rate-wrap"><span>$</span><input class="rate" type="number" value="1800"/></div><strong class="amount">$1,800.00</strong><button class="remove" aria-label="Remove item">×</button></div>
+                </div>
+              </div>
+              <div class="notes-area"><label>Notes<textarea id="notes">Thanks for choosing Studio Noma. Please make payment within 14 days.</textarea></label><label>Terms<textarea id="termsText">50% deposit is non-refundable. Late payments are subject to a 2% monthly fee.</textarea></label></div>
+            </section>
+
+            <aside class="summary-panel">
+              <div class="summary-header"><span>SUMMARY</span><button class="currency">USD <b>⌄</b></button></div>
+              <div class="summary-lines"><div><span>Subtotal</span><strong id="subtotal">$4,200.00</strong></div><div><span>Tax <button class="add-tax" id="addTax">+ Add tax</button></span><strong id="tax">$0.00</strong></div><div class="total"><span>Total</span><strong id="total">$4,200.00</strong></div></div>
+              <div class="payment-note"><span class="lock">⌁</span><p>Payments are securely processed by <strong>Stripe</strong>.</p></div>
+              <button class="preview-button" id="previewInvoice">Preview invoice <span>↗</span></button>
+            </aside>
+          </div>
+          <section class="saved-invoices" id="activitySection"><div class="saved-heading"><div><p class="eyebrow">ACTIVITY</p><h2>Saved invoices</h2></div><span id="invoiceCount">0 invoices</span></div><div class="empty-state" id="invoiceList">Your saved invoices will appear here.</div></section>
+          <section class="utility-view" id="utilityView" hidden></section>
+        </section>
+      </main>
+    </div>
+    <div class="toast" id="toast">Draft saved successfully</div>
+    <div class="modal-backdrop" id="helpModal" hidden><section class="modal-card"><button class="modal-close" data-close="helpModal">×</button><p class="eyebrow">VANTA HELP</p><h2>Invoice essentials</h2><p>Create an invoice, enter your client and line items, then select <strong>Send invoice</strong> to save it. Use the Invoices tab to view saved work and mark payments as received.</p><button class="primary-button" data-close="helpModal">Got it</button></section></div>
+    <div class="search-panel" id="searchPanel" hidden><label>Search invoices<input id="invoiceSearch" placeholder="Invoice number or client name" autofocus /></label><button id="closeSearch">Close</button></div>
+    <div class="profile-menu" id="profileMenu" hidden><strong>Alex Morgan</strong><small>alex@studionoma.com</small><button data-view="settings">Account settings</button><button id="signOut">Sign out</button></div>
+    <script src="app.js"></script>
+    <script src="interactions.js"></script>
+  </body>
+</html>
