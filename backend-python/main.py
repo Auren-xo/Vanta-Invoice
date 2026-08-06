@@ -1,4 +1,4 @@
-from __future__ import annotations
+init_database.cpython-312.pycfrom __future__ import annotations
 
 import os
 from datetime import date, datetime
@@ -85,7 +85,7 @@ def get_db():
 def serialize(invoice: Invoice):
     return {'id': str(invoice.id), 'number': invoice.number, 'status': invoice.status, 'clientName': invoice.client.name, 'clientEmail': invoice.client.email, 'issueDate': invoice.issue_date.isoformat(), 'dueDate': invoice.due_date.isoformat(), 'terms': invoice.terms, 'notes': invoice.notes, 'termsText': invoice.terms_text, 'subtotal': float(invoice.subtotal), 'total': float(invoice.total), 'createdAt': invoice.created_at.isoformat(), 'items': [{'description': item.description, 'quantity': float(item.quantity), 'rate': float(item.rate)} for item in invoice.items]}
 
-app = FastAPI(title='Vanta Invoice API', version='1.0.0')
+app = FastAPI(title='d Invoice API', version='1.0.0')
 
 @app.on_event('startup')
 def create_tables():

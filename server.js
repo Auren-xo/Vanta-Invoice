@@ -22,4 +22,4 @@ const server = createServer(async (req, res) => { try {
   if (match && req.method === 'PATCH') { const { status } = await readBody(req); if (!['draft', 'sent', 'paid', 'overdue'].includes(status)) return reply(res, 422, { error: 'Invalid status.' }); const db = await database(); const invoice = db.invoices.find(i => i.id === match[1]); if (!invoice) return reply(res, 404, { error: 'Invoice not found.' }); invoice.status = status; await save(db); return reply(res, 200, invoice); }
   const file = url.pathname === '/' ? 'index.html' : normalize(url.pathname).replace(/^([.][.][\\/])+/,''); const full = join(root, file); if (!full.startsWith(root) || !existsSync(full)) { res.writeHead(404); return res.end('Not found'); } res.writeHead(200, { 'Content-Type': types[extname(full)] || 'application/octet-stream' }); res.end(await readFile(full));
 } catch (error) { reply(res, 500, { error: error.message || 'Server error' }); } });
-server.listen(process.env.PORT || 3000, () => console.log('Vanta is running at http://localhost:3000'));
+server.listen(process.env.PORT || 3000, () => console.log('Danpa is running at http://localhost:3000'));
